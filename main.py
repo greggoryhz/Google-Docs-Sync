@@ -368,7 +368,9 @@ if __name__ == "__main__":
     parser.add_argument('-p', '--pull',
                         action='store_true',
                         help='Download all documents from the server one time')
-    
+    parser.add_argument('-f', '--singlefile',
+                        action='store',
+                        help='Download a single file')
     args = parser.parse_args()
     
     # Execute the command
@@ -384,6 +386,11 @@ if __name__ == "__main__":
         daemon = SyncDaemon()
         daemon.sync.authorize()
         daemon.restart()
+    elif args.singlefile:
+	sync = DocSync() # get the non-daemon form
+	sync.authorize()
+	feed = self.client.GetDocList(uri='/feeds/default/private/full/folder%3Aroot/contents/-/all')
+	# loop through all docs and see if any of them matches args.singlefile? There must be a more direct way to do this
     else: # the following is for options that allow more than one option at a time
         sync = DocSync() # need the non-daemon form for all of the following
         if args.pull:
