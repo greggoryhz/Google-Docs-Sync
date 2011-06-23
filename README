@@ -1,6 +1,5 @@
-Functionality
--------------
-Google-Docs-Sync will download all documents from your Google account into .odt files. Any documents you edit and save will be uploaded again.
+usage: main.py [-h] [-d] [-s] [-r] [-p] [--username USERNAME]
+               [--password PASSWORD]
 
 Getting Started
 ----------------
@@ -27,3 +26,17 @@ It might properly download all the docs, but when it tries to setup the bits to 
 
 
 I would like support for those platforms. If you have the know how to accomplish this outside of Linux, please let me know!
+=======
+Manually or automatically sync your Google Docs. Currently it's a one way sync. 
+If you make changes locally while in daemon mode (-d), they will show up remotely,
+but remote changes aren't pulled down until the daemon is restarted.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d, --daemon          Start the sync in daemon mode (ignores all other
+                        options)
+  -s, --stop-daemon     Stop the running daemon (ignores all other options)
+  -r, --restart-daemon  Restart the running daemon (ignores all other options)
+  -p, --pull            Download all documents from the server one time
+  --username USERNAME   Set the username
+  --password PASSWORD   Set the password
